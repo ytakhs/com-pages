@@ -46,7 +46,14 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body
+        className="
+        font-sans text-tiny text-left text-neutral-800 dark:text-neutral-300
+        break-words bg-neutral-50
+        dark:bg-neutral-900
+        sm:text-base
+      "
+      >
         <Outlet />
         <ScrollRestoration />
         <Scripts />

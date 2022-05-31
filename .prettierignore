@@ -1,5 +1,7 @@
 /*
 !app
+!lib
+!scripts
 !/*.json
 !/*.js
 !/*.ts

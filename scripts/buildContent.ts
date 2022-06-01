@@ -19,11 +19,18 @@ async function build() {
     }
   );
 
-  const entryMap = entries.map(({ title, path: entryPath, createdAt }) => ({
-    title,
-    path: entryPath,
-    createdTime: getUnixTime(parseISO(createdAt)),
-  }));
+  const entryMap = entries.reduce(
+    (acc, { title, path: entryPath, createdAt }) => ({
+      ...acc,
+      ...{
+        [entryPath]: {
+          title,
+          createdAt: getUnixTime(parseISO(createdAt)),
+        },
+      },
+    }),
+    {}
+  );
 
   writeFileSync(
     join(pwd, 'public', 'content', 'entries.json'),

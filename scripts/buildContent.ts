@@ -3,7 +3,7 @@ import { join, dirname } from 'path';
 import { getUnixTime, parseISO } from 'date-fns';
 import { getAllEntries } from '../lib/entry';
 
-async function build() {
+async function main() {
   const entries = getAllEntries();
   const pwd = process.cwd();
 
@@ -38,4 +38,4 @@ async function build() {
   );
 }
 
-build();
+main();

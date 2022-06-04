@@ -6,14 +6,12 @@ import type { Entry } from '../lib/entry';
 
 const homeURL = 'https://ytakhs.com/';
 
-const main = async () => {
+(async () => {
   const allEntries = getAllEntries();
   const entries = sortEntryByDateDesc(allEntries);
 
   createAtomFeedFile(entries);
-};
-
-main();
+})();
 
 function createAtomFeedFile(sortedEntries: ReadonlyArray<Entry>): void {
   const atom = createAtomFeed(sortedEntries);

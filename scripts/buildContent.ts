@@ -3,7 +3,7 @@ import { join, dirname } from 'path';
 import { getUnixTime, parseISO } from 'date-fns';
 import { getAllEntries } from '../lib/entry';
 
-async function main() {
+(async () => {
   const entries = getAllEntries();
   const pwd = process.cwd();
 
@@ -36,6 +36,4 @@ async function main() {
     join(pwd, 'public', 'content', 'entries.json'),
     JSON.stringify(entryMap)
   );
-}
-
-main();
+})();

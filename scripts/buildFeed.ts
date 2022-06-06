@@ -39,7 +39,7 @@ function createAtomFeed(sortedEntries: ReadonlyArray<Entry>): string {
         ],
       },
       { author: [{ name: 'ytakhs' }] },
-      { updated: latestEntry.createdAt },
+      { updated: latestEntry?.createdAt },
       ...sortedEntries.map(createAtomEntry),
     ],
   };

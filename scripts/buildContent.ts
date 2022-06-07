@@ -25,6 +25,7 @@ import { getAllEntries } from '../lib/entry';
       ...{
         [entryPath]: {
           title,
+          path: entryPath,
           createdAt: getUnixTime(parseISO(createdAt)),
         },
       },

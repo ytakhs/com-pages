@@ -1,8 +1,12 @@
 import type { FC } from 'react';
-import { parseISO, format } from 'date-fns';
+import { fromUnixTime, format } from 'date-fns';
 
-export const Date: FC<{ dateString: string }> = ({ dateString }) => {
-  const date = parseISO(dateString);
+export const Date: FC<{ unixTime: number }> = ({ unixTime }) => {
+  const date = fromUnixTime(unixTime);
 
-  return <time dateTime={dateString}>{format(date, 'LLLL d, yyyy')}</time>;
+  return (
+    <time dateTime={format(date, 'yyyy-M-dd')}>
+      {format(date, 'LLLL d, yyyy')}
+    </time>
+  );
 };

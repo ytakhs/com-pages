@@ -1,4 +1,3 @@
-
 import assert from 'assert';
 import { formatISO } from 'date-fns';
 import fs from 'fs';
@@ -90,8 +89,8 @@ function getEntryPathParams(filePath: string): EntryPathParams {
 
   const { date, slug } = match.groups;
 
-  assert(date, "date must be present");
-  assert(slug, "slug must be present");
+  assert(date, 'date must be present');
+  assert(slug, 'slug must be present');
 
   const entryPath = posix.join('/entries', date, slug);
   return {
@@ -107,8 +106,8 @@ function getEntryMatter(fullPath: string): EntryMatter {
   const content = matterResult.content;
   const { title, description, createdAt, draft } = matterResult.data;
 
-  assert(typeof title === 'string', "title must be string");
-  assert(createdAt instanceof Date, "createdAt must be Date");
+  assert(typeof title === 'string', 'title must be string');
+  assert(createdAt instanceof Date, 'createdAt must be Date');
 
   return {
     title,

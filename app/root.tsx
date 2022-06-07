@@ -48,9 +48,9 @@ export default function App() {
       </head>
       <body
         className="
-        font-sans text-tiny text-left text-neutral-800 dark:text-neutral-300
-        break-words bg-neutral-50
-        dark:bg-neutral-900
+        font-sans text-tiny text-left text-slate-800 dark:text-slate-300
+        break-words bg-slate-50
+        dark:bg-slate-900
         sm:text-base
       "
       >

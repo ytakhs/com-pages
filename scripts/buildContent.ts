@@ -1,6 +1,5 @@
 import { writeFileSync, mkdirSync } from 'fs';
 import { join, dirname } from 'path';
-import { getUnixTime, parseISO } from 'date-fns';
 import { getAllEntries } from '../lib/entry';
 
 (async () => {
@@ -26,7 +25,7 @@ import { getAllEntries } from '../lib/entry';
         [entryPath]: {
           title,
           path: entryPath,
-          createdAt: getUnixTime(parseISO(createdAt)),
+          createdAt: createdAt,
         },
       },
     }),

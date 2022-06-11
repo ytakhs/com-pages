@@ -6,16 +6,26 @@ export function parseMarkdown(tokens: marked.Token[]): ReactNode[] {
   return tokens.map((token) => {
     switch (token.type) {
       case 'blockquote': {
-        return createElement('blockquote', {}, parseInline(token.tokens));
+        return (
+          <blockquote key={token.raw}>{parseInline(token.tokens)}</blockquote>
+        );
       }
       case 'code': {
-        return createElement('pre', {}, createElement('code', {}, token.text));
+        return (
+          <pre key={token.raw}>
+            <code>{token.text}</code>
+          </pre>
+        );
       }
       case 'heading': {
-        return createElement(`h${token.depth}`, {}, parseInline(token.tokens));
+        return createElement(
+          `h${token.depth}`,
+          { key: token.raw },
+          parseInline(token.tokens)
+        );
       }
       case 'hr': {
-        return createElement('hr');
+        return <hr key={token.raw} />;
       }
       case 'html': {
         return token.text;
@@ -26,24 +36,28 @@ export function parseMarkdown(tokens: marked.Token[]): ReactNode[] {
         return createElement(
           type,
           {},
-          token.items.map((item) => {
+          token.items.map((item, i) => {
             if (item.task) {
-              return createElement('li', {}, [
-                createElement('input', {
-                  type: 'checkbox',
-                  disabled: true,
-                  checked: item.checked,
-                }),
-                ...parseMarkdown(item.tokens),
+              return createElement('li', { key: i }, [
+                <li key={item.raw}>
+                  [
+                  <input
+                    type="checkbox"
+                    disabled={true}
+                    checked={item.checked}
+                    key={item.raw}
+                  />
+                  ...parseMarkdown(item.tokens) ]
+                </li>,
               ]);
             } else {
-              return createElement('li', {}, parseMarkdown(item.tokens));
+              return <li key={item.raw}>{parseMarkdown(item.tokens)}</li>;
             }
           })
         );
       }
       case 'paragraph': {
-        return createElement('p', {}, parseInline(token.tokens));
+        return <p key={token.raw}>{parseInline(token.tokens)}</p>;
       }
       case 'space': {
         return null;
@@ -52,7 +66,7 @@ export function parseMarkdown(tokens: marked.Token[]): ReactNode[] {
         const headerCells = token.header.map((item, i) => {
           return createElement(
             'th',
-            { align: token.align[i] },
+            { align: token.align[i], key: i },
             parseInline(item.tokens)
           );
         });
@@ -62,7 +76,7 @@ export function parseMarkdown(tokens: marked.Token[]): ReactNode[] {
         const bodyRows = token.rows.map((cells, index) => {
           return createElement(
             'td',
-            {},
+            { key: index },
             cells.map((cel) =>
               createElement(
                 'td',
@@ -72,9 +86,9 @@ export function parseMarkdown(tokens: marked.Token[]): ReactNode[] {
             )
           );
         });
-        const body = createElement('tbody', {}, bodyRows);
+        const body = <tbody>{bodyRows}</tbody>;
 
-        return createElement('table', {}, [header, body]);
+        return <table>{[header, body]}</table>;
       }
       default:
         throw new Error(`type ${token.type} is invalid`);
@@ -86,17 +100,17 @@ function parseInline(tokens: marked.Token[]): ReactNode[] {
   return tokens.map((token) => {
     switch (token.type) {
       case 'br': {
-        return createElement('br');
+        return <br />;
       }
       case 'codespan': {
         const { text } = token;
-        return createElement('code', {}, text);
+        return <code key={token.raw}>{text}</code>;
       }
       case 'del': {
-        return createElement('del', {}, parseInline(token.tokens));
+        return <del key={token.raw}>{parseInline(token.tokens)}</del>;
       }
       case 'em': {
-        return createElement('em', parseInline(token.tokens));
+        return <em key={token.raw}>{parseInline(token.tokens)}</em>;
       }
       case 'escape': {
         return token.text;
@@ -106,18 +120,18 @@ function parseInline(tokens: marked.Token[]): ReactNode[] {
       }
       case 'image': {
         const { href, text, title } = token;
-        return createElement('img', { src: href, alt: text, title });
+        return <img src={href} alt={text} title={title} key={token.raw} />;
       }
       case 'link': {
         const { href } = token;
-        return createElement(
-          'a',
-          { href, target: '_blank' },
-          parseInline(token.tokens)
+        return (
+          <a href={href} target="_blank" rel="noreferrer" key={token.raw}>
+            {parseInline(token.tokens)}
+          </a>
         );
       }
       case 'strong': {
-        return createElement('strong', parseInline(token.tokens));
+        return <strong key={token.raw}>{parseInline(token.tokens)}</strong>;
       }
       case 'text': {
         return token.text;

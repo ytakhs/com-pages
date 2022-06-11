@@ -9,9 +9,7 @@ import { H1 } from '~/components/Heading';
 import { format, parseISO } from 'date-fns';
 
 type Entry = { title: string; createdAt: string; path: string };
-
 type EntryMap = Record<string, Entry>;
-
 type LoaderData = {
   entries: ReadonlyArray<Entry>;
 };

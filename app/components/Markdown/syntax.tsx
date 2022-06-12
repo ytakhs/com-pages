@@ -1,5 +1,5 @@
 import type { ComponentProps, FC } from 'react';
-import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 import js from 'react-syntax-highlighter/dist/esm/languages/prism/javascript';

@@ -11,5 +11,5 @@ export const Markdown: FC<Props> = ({ markdown }) => {
   const tokens = lex.lex(markdown);
   const children = parseMarkdown(tokens);
 
-  return <div>{children}</div>;
+  return <>{children}</>;
 };

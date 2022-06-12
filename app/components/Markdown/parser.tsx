@@ -1,8 +1,7 @@
 import type { marked } from 'marked';
 import type { ReactNode } from 'react';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import { H1, H2, H3, H4, H5, H6 } from '../Heading';
+import { Syntax } from './syntax';
 
 function isObjectAccessible(val: unknown): val is { [key: string]: unknown } {
   return typeof val === 'object' && val != null;
@@ -28,14 +27,9 @@ export function parseMarkdown(tokens: marked.Token[]): ReactNode[] {
       case 'code': {
         return (
           <div className="rounded" key={token.raw}>
-            <SyntaxHighlighter
-              key={token.raw}
-              style={atomDark}
-              language={token.lang}
-              PreTag="pre"
-            >
+            <Syntax key={token.raw} language={token.lang} PreTag="pre">
               {token.text}
-            </SyntaxHighlighter>
+            </Syntax>
           </div>
         );
       }

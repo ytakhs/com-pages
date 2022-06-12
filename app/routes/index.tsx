@@ -34,15 +34,6 @@ export default function Index() {
             </Link>
           </li>
           <li className="list-item py-1.5 leading-relaxed">
-            <Link to="/profile">
-              <div className="border-b">
-                <span className="inline-flex items-center">
-                  Profile <ChevronRightIcon className="mx-2 w-5 h-5" />
-                </span>
-              </div>
-            </Link>
-          </li>
-          <li className="list-item py-1.5 leading-relaxed">
             <Link to="https://github.com/ytakhs" target="_blank">
               <div className="border-b">
                 <span className="inline-flex items-center">

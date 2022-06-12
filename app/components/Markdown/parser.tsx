@@ -2,6 +2,7 @@ import type { marked } from 'marked';
 import type { ReactNode } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { H1, H2, H3, H4, H5, H6 } from '../Heading';
 
 function isObjectAccessible(val: unknown): val is { [key: string]: unknown } {
   return typeof val === 'object' && val != null;
@@ -16,19 +17,26 @@ export function parseMarkdown(tokens: marked.Token[]): ReactNode[] {
     switch (token.type) {
       case 'blockquote': {
         return (
-          <blockquote key={token.raw}>{parseInline(token.tokens)}</blockquote>
+          <blockquote
+            className="pl-3 ml-2 rounded-l-sm border-l-4 border-slate-400"
+            key={token.raw}
+          >
+            {parseInline(token.tokens)}
+          </blockquote>
         );
       }
       case 'code': {
         return (
-          <SyntaxHighlighter
-            key={token.raw}
-            style={atomDark}
-            language={token.lang}
-            PreTag="pre"
-          >
-            {token.text}
-          </SyntaxHighlighter>
+          <div className="rounded" key={token.raw}>
+            <SyntaxHighlighter
+              key={token.raw}
+              style={atomDark}
+              language={token.lang}
+              PreTag="pre"
+            >
+              {token.text}
+            </SyntaxHighlighter>
+          </div>
         );
       }
       case 'heading': {
@@ -36,17 +44,25 @@ export function parseMarkdown(tokens: marked.Token[]): ReactNode[] {
 
         switch (token.depth) {
           case 1:
-            return <h1 key={token.raw}>{inline}</h1>;
+            return (
+              <H1 key={token.raw} hasAnchor={true}>
+                {inline}
+              </H1>
+            );
           case 2:
-            return <h2 key={token.raw}>{inline}</h2>;
+            return (
+              <H2 key={token.raw} hasAnchor={true}>
+                {inline}
+              </H2>
+            );
           case 3:
-            return <h3 key={token.raw}>{inline}</h3>;
+            return <H3 key={token.raw}>{inline}</H3>;
           case 4:
-            return <h4 key={token.raw}>{inline}</h4>;
+            return <H4 key={token.raw}>{inline}</H4>;
           case 5:
-            return <h5 key={token.raw}>{inline}</h5>;
+            return <H5 key={token.raw}>{inline}</H5>;
           case 6:
-            return <h6 key={token.raw}>{inline}</h6>;
+            return <H6 key={token.raw}>{inline}</H6>;
           default:
             throw Error(`invalid heading ${token.depth}`);
         }
@@ -71,7 +87,11 @@ export function parseMarkdown(tokens: marked.Token[]): ReactNode[] {
             : [];
 
           const content = [...task, ...parseMarkdown(item.tokens)];
-          return <li key={item.raw}>{content}</li>;
+          return (
+            <li className="list-item py-1.5 leading-relaxed" key={item.raw}>
+              {content}
+            </li>
+          );
         });
 
         if (token.ordered) {
@@ -81,7 +101,11 @@ export function parseMarkdown(tokens: marked.Token[]): ReactNode[] {
         }
       }
       case 'paragraph': {
-        return <p key={token.raw}>{parseInline(token.tokens)}</p>;
+        return (
+          <p className="py-3 tracking-wider leading-relaxed" key={token.raw}>
+            {parseInline(token.tokens)}
+          </p>
+        );
       }
       case 'space': {
         return null;
@@ -133,7 +157,14 @@ function parseInline(tokens: marked.Token[]): ReactNode[] {
       case 'codespan': {
         const { text } = token;
 
-        return <code key={token.raw}>{unescapeText(text)}</code>;
+        return (
+          <code
+            className="py-0.5 px-1 dark:text-slate-800 bg-slate-300 dark:bg-slate-400 rounded-sm"
+            key={token.raw}
+          >
+            {unescapeText(text)}
+          </code>
+        );
       }
       case 'del': {
         return <del key={token.raw}>{parseInline(token.tokens)}</del>;
@@ -150,13 +181,22 @@ function parseInline(tokens: marked.Token[]): ReactNode[] {
       case 'image': {
         const { href, text, title } = token;
 
-        return <img src={href} alt={text} title={title} key={token.raw} />;
+        return (
+          <figure>
+            <img src={href} alt={text} title={title} key={token.raw} />
+          </figure>
+        );
       }
       case 'link': {
         const { href } = token;
 
+        let props: { rel: string; target?: string } = { rel: 'noreferrer' };
+        if (href.startsWith('http')) {
+          props = { rel: 'noreferrer nofollow', target: '_blank' };
+        }
+
         return (
-          <a href={href} target="_blank" rel="noreferrer" key={token.raw}>
+          <a className="border-b" href={href} key={token.raw} {...props}>
             {parseInline(token.tokens)}
           </a>
         );

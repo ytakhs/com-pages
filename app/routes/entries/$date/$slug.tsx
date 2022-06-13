@@ -58,7 +58,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 
   const entryMap = entryMapSchema.parse(data);
   if (!entryMap[pathname]) {
-    return new Response('Not found', { status: 404 });
+    throw new Response('Not found', { status: 404 });
   }
 
   const entryRes = await fetch(entryUrl);

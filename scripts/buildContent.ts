@@ -13,7 +13,13 @@ import { getAllEntries } from '../lib/entry';
       mkdirSync(dirname(dest), { recursive: true });
       writeFileSync(
         dest,
-        JSON.stringify({ title, content, description, createdAt })
+        JSON.stringify({
+          title,
+          content,
+          description,
+          createdAt,
+          path: entryPath,
+        })
       );
     }
   );

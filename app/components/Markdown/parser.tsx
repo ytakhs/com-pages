@@ -27,7 +27,7 @@ export function parseMarkdown(tokens: marked.Token[]): ReactNode[] {
       case 'code': {
         return (
           <div className="rounded" key={token.raw}>
-            <Syntax key={token.raw} language={token.lang} PreTag="pre">
+            <Syntax language={token.lang} PreTag="pre">
               {token.text}
             </Syntax>
           </div>
@@ -193,6 +193,13 @@ function parseInline(tokens: marked.Token[]): ReactNode[] {
           <a className="border-b" href={href} key={token.raw} {...props}>
             {parseInline(token.tokens)}
           </a>
+        );
+      }
+      case 'paragraph': {
+        return (
+          <p key={token.text} className="py-3 tracking-wider leading-relaxed">
+            {parseInline(token.tokens)}
+          </p>
         );
       }
       case 'strong': {

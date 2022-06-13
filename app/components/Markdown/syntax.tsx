@@ -11,7 +11,6 @@ import json from 'react-syntax-highlighter/dist/esm/languages/prism/json';
 import yaml from 'react-syntax-highlighter/dist/esm/languages/prism/yaml';
 
 type Props = {
-  key: ComponentProps<typeof SyntaxHighlighter>['key'];
   PreTag: ComponentProps<typeof SyntaxHighlighter>['PreTag'];
   language: ComponentProps<typeof SyntaxHighlighter>['language'];
   children: ComponentProps<typeof SyntaxHighlighter>['children'];
@@ -25,14 +24,9 @@ SyntaxHighlighter.registerLanguage('zig', zig);
 SyntaxHighlighter.registerLanguage('json', json);
 SyntaxHighlighter.registerLanguage('yaml', yaml);
 
-export const Syntax: FC<Props> = ({ key, PreTag, language, children }) => {
+export const Syntax: FC<Props> = ({ PreTag, language, children }) => {
   return (
-    <SyntaxHighlighter
-      key={key}
-      style={atomDark}
-      language={language}
-      PreTag={PreTag}
-    >
+    <SyntaxHighlighter style={atomDark} language={language} PreTag={PreTag}>
       {children}
     </SyntaxHighlighter>
   );

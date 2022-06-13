@@ -1,5 +1,5 @@
+import type { LoaderFunction, MetaFunction } from '@remix-run/cloudflare';
 import { json } from '@remix-run/cloudflare';
-import type { LoaderFunction } from '@remix-run/cloudflare';
 import { Link, useLoaderData } from '@remix-run/react';
 import { z } from 'zod';
 import { schemForType } from '~/utils/zod';
@@ -48,6 +48,16 @@ export const loader: LoaderFunction = async ({ request }) => {
 
   return json<LoaderData>({ entries });
 };
+
+const baseUrl = 'https://ytakhs.com';
+export const meta: MetaFunction = () => ({
+  title: 'Writings | ytakhs.com',
+  'og:title': 'Writings | ytakhs.com',
+  'og:description': 'Writings | ytakhs.com',
+  'og:type': 'website',
+  'og:url': `${baseUrl}/entries`,
+  'twitter:card': 'summary',
+});
 
 export default function Index() {
   const { entries } = useLoaderData<LoaderData>();

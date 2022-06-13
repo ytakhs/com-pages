@@ -2,7 +2,7 @@ import type { LoaderFunction, MetaFunction } from '@remix-run/cloudflare';
 import { json } from '@remix-run/cloudflare';
 import { Link, useLoaderData } from '@remix-run/react';
 import { z } from 'zod';
-import { schemForType } from '~/utils/zod';
+import { schemaForType } from '~/utils/zod';
 import { Layout } from '../../components/Layout';
 import { BreadcrumbItem } from '~/components/Breadcrumb';
 import { H1 } from '~/components/Heading';
@@ -37,7 +37,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   const res = await fetch(entriesUrl);
   const data = await res.json();
 
-  const schema = schemForType<EntryMap>()(
+  const schema = schemaForType<EntryMap>()(
     z.record(
       z.string(),
       z.object({ title: z.string(), createdAt: z.string(), path: z.string() })

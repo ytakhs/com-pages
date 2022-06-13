@@ -7,7 +7,7 @@ import { H1 } from '~/components/Heading';
 import { Layout } from '~/components/Layout';
 import { Markdown } from '~/components/Markdown';
 import { removeTralingSlash } from '~/utils/url';
-import { schemForType } from '~/utils/zod';
+import { schemaForType } from '~/utils/zod';
 
 type Entry = { title: string; createdAt: string; path: string };
 type EntryMap = Record<string, Entry>;
@@ -17,14 +17,14 @@ type LoaderData = {
   content: string;
   path: string;
 };
-const entryMapSchema = schemForType<EntryMap>()(
+const entryMapSchema = schemaForType<EntryMap>()(
   z.record(
     z.string(),
     z.object({ title: z.string(), createdAt: z.string(), path: z.string() })
   )
 );
 
-const entrySchema = schemForType<LoaderData>()(
+const entrySchema = schemaForType<LoaderData>()(
   z.object({
     title: z.string(),
     description: z.string().nullable(),

@@ -1,5 +1,4 @@
 import React from 'react';
-import { LinkIcon } from '@heroicons/react/solid';
 import type { CSSProperties } from 'react';
 
 type Props = HeadingProps & { as: React.ElementType };
@@ -73,13 +72,11 @@ export function Heading({ as, children, hasAnchor, ...props }: Props) {
       id={hasAnchor ? encodeURI(children?.toString() || '') : null}
       {...props}
     >
-      <span>
-        {hasAnchor && typeof children == 'string' ? (
-          <a href={`#${encodeURI(children?.toString() || '')}`}>
-            <LinkIcon className="inline-block mr-2 w-5 h-5" />
-          </a>
-        ) : null}
-      </span>
+      {hasAnchor ? (
+        <a href={`#${encodeURI(children?.toString() || '')}`} className="pr-2">
+          #
+        </a>
+      ) : null}
       {children}
     </Tag>
   );

@@ -10,7 +10,7 @@ export default function Index() {
       <div className="flex justify-start py-8">
         <figure className="block px-2 m-auto w-full max-w-[30%] h-full max-h-[30%]">
           <img
-            className="static rounded-full"
+            className="static rounded-full border border-slate-800"
             src="/images/icon.svg"
             alt="icon"
           />

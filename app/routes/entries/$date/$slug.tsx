@@ -6,17 +6,15 @@ import { BreadcrumbItem } from '~/components/Breadcrumb';
 import { H1 } from '~/components/Heading';
 import { Layout } from '~/components/Layout';
 import { Markdown } from '~/components/Markdown';
+import type { Entry } from '~/models/entry';
+import { validateEntry } from '~/models/entry';
 import { removeTralingSlash } from '~/utils/url';
 import { schemaForType } from '~/utils/zod';
 
-type Entry = { title: string; createdAt: string; path: string };
-type EntryMap = Record<string, Entry>;
-type LoaderData = {
-  title: string;
-  description?: string | null;
-  content: string;
-  path: string;
-};
+type EntryMap = Record<
+  string,
+  { title: string; createdAt: string; path: string }
+>;
 const entryMapSchema = schemaForType<EntryMap>()(
   z.record(
     z.string(),
@@ -24,18 +22,13 @@ const entryMapSchema = schemaForType<EntryMap>()(
   )
 );
 
-const entrySchema = schemaForType<LoaderData>()(
-  z.object({
-    title: z.string(),
-    description: z.string().nullable(),
-    content: z.string(),
-    path: z.string(),
-  })
-);
-
 const baseUrl = 'https://ytakhs.com';
 export const meta: MetaFunction = ({ data }) => {
-  const entry = entrySchema.parse(data);
+  const entry = validateEntry(data);
+  if (!entry) {
+    return {};
+  }
+
   const url = new URL(entry.path, baseUrl);
 
   return {
@@ -62,8 +55,8 @@ export const loader: LoaderFunction = async ({ request }) => {
   }
 
   const entryRes = await fetch(entryUrl);
-  const entryData = await entryRes.json<LoaderData>();
-  const entry = entrySchema.parse(entryData);
+  const entryData = await entryRes.json<Entry>();
+  const entry = validateEntry(entryData);
 
   return json(entry);
 };

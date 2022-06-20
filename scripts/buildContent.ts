@@ -1,6 +1,7 @@
 import { writeFileSync, mkdirSync } from 'fs';
 import { join, dirname } from 'path';
 import { getAllEntries } from '../lib/entry';
+import type { Entry } from '../app/models/entry';
 
 (async () => {
   const entries = getAllEntries();
@@ -11,16 +12,14 @@ import { getAllEntries } from '../lib/entry';
       const dest = join(pwd, 'public', 'content', `${entryPath}.json`);
 
       mkdirSync(dirname(dest), { recursive: true });
-      writeFileSync(
-        dest,
-        JSON.stringify({
-          title,
-          content,
-          description,
-          createdAt,
-          path: entryPath,
-        })
-      );
+      const entry: Entry = {
+        title,
+        content,
+        description,
+        createdAt,
+        path: entryPath,
+      };
+      writeFileSync(dest, JSON.stringify(entry));
     }
   );
 

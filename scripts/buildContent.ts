@@ -1,7 +1,7 @@
 import { writeFileSync, mkdirSync } from 'fs';
 import { join, dirname } from 'path';
 import { getAllEntries } from '../lib/entry';
-import type { Entry } from '../app/models/entry';
+import type { Entry } from '../app/domains/entry';
 
 (async () => {
   const entries = getAllEntries();

@@ -1,26 +1,13 @@
 import type { LoaderFunction, MetaFunction } from '@remix-run/cloudflare';
 import { json } from '@remix-run/cloudflare';
 import { useLoaderData } from '@remix-run/react';
-import { z } from 'zod';
 import { BreadcrumbItem } from '~/components/Breadcrumb';
 import { H1 } from '~/components/Heading';
 import { Layout } from '~/components/Layout';
 import { Markdown } from '~/components/Markdown';
-import type { Entry } from '~/models/entry';
-import { validateEntry } from '~/models/entry';
+import type { Entry, EntryMap } from '~/domains/entry';
+import { validateEntry, validateEntryMap } from '~/domains/entry';
 import { removeTralingSlash } from '~/utils/url';
-import { schemaForType } from '~/utils/zod';
-
-type EntryMap = Record<
-  string,
-  { title: string; createdAt: string; path: string }
->;
-const entryMapSchema = schemaForType<EntryMap>()(
-  z.record(
-    z.string(),
-    z.object({ title: z.string(), createdAt: z.string(), path: z.string() })
-  )
-);
 
 const baseUrl = 'https://ytakhs.com';
 export const meta: MetaFunction = ({ data }) => {
@@ -49,8 +36,8 @@ export const loader: LoaderFunction = async ({ request }) => {
   const res = await fetch(entriesUrl);
   const data = await res.json<EntryMap>();
 
-  const entryMap = entryMapSchema.parse(data);
-  if (!entryMap[pathname]) {
+  const entryMap = validateEntryMap(data);
+  if (!entryMap || !entryMap[pathname]) {
     throw new Response('Not found', { status: 404 });
   }
 

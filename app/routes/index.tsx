@@ -21,7 +21,7 @@ export default function Index() {
             <li className="tracking-wider leading-relaxed">
               GitHub:{' '}
               <a
-                href="https://twitter.com/ytakhs"
+                href="https://github.com/ytakhs"
                 target="_blank"
                 rel="noreferrer"
                 className="underline"

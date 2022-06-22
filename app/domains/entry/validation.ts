@@ -19,14 +19,14 @@ const entryMapSchema = schemaForType<EntryMap>()(
   )
 );
 
-export function validateEntry(entry: Entry): Entry | false {
-  const res = entrySchema.safeParse(entry);
+export function validateEntry(v: unknown): Entry | false {
+  const res = entrySchema.safeParse(v);
 
   return res.success && res.data;
 }
 
-export function validateEntryMap(entryMap: EntryMap): EntryMap | false {
-  const res = entryMapSchema.safeParse(entryMap);
+export function validateEntryMap(v: unknown): EntryMap | false {
+  const res = entryMapSchema.safeParse(v);
 
   return res.success && res.data;
 }

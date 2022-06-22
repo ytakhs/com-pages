@@ -1,3 +1,3 @@
 export * from './types';
 export * from './data';
-export * from './useCase';
+export * from './validation';

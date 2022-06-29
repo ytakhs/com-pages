@@ -1449,10 +1449,10 @@
     eslint-plugin-react-hooks "^4.3.0"
     eslint-plugin-testing-library "^5.0.5"
 
-"@remix-run/react@^1.6.1":
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/@remix-run/react/-/react-1.6.1.tgz#39c2dd234256df5034860abf5eca7761efe57704"
-  integrity sha512-7jg1IyE/cEz1pYRC2fk8WMmorxNam0XWUuwgDH9f7bV3DH0uyqZSemayb4QLTuJaxW/YT12CW4qyzIGvSu0YYA==
+"@remix-run/react@^1.6.2":
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/@remix-run/react/-/react-1.6.2.tgz#b6df695a3996a5d7d0912292e6dd3d0ffcfc5f81"
+  integrity sha512-SXK9Z/1QwfZtvBbirzrSa1/65jQZ77UgMqYRf+Zf/QYDcmk6k2Cm55TIyr1Nia+k5CZqOm8/A8FGi8RzJRg/BA==
   dependencies:
     history "^5.3.0"
     react-router-dom "^6.2.2"

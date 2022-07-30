@@ -3,8 +3,12 @@ import { Link } from '@remix-run/react';
 import { H2 } from '~/components/Heading';
 import { Layout } from '~/components/Layout';
 import styles from '~/styles/root.css';
+import { links as layoutLinks } from '~/components/Layout';
 
-export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }];
+export const links: LinksFunction = () => [
+  { rel: 'stylesheet', href: styles },
+  ...layoutLinks(),
+];
 
 export default function Index() {
   return (

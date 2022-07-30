@@ -1,3 +1,4 @@
+import { format, parseISO } from 'date-fns';
 import type {
   LoaderFunction,
   MetaFunction,
@@ -13,7 +14,7 @@ import type { Entry, EntryMap } from '~/domains/entry';
 import { validateEntry, validateEntryMap } from '~/domains/entry';
 import { removeTralingSlash } from '~/utils/url';
 import styles from '~/styles/entries/$date/$slug.css';
-import { format, parseISO } from 'date-fns';
+import { links as layoutLinks } from '~/components/Layout';
 
 const baseUrl = 'https://ytakhs.com';
 export const meta: MetaFunction = ({ data }) => {
@@ -34,7 +35,10 @@ export const meta: MetaFunction = ({ data }) => {
   };
 };
 
-export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }];
+export const links: LinksFunction = () => [
+  { rel: 'stylesheet', href: styles },
+  ...layoutLinks(),
+];
 
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);

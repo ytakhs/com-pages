@@ -73,9 +73,18 @@ export default function Index() {
             return (
               <li key={i}>
                 <Link to={entry.path}>
-                  <div className="py-4 border-b">
+                  <div
+                    style={{
+                      padding: '1rem 0',
+                      borderBottomWidth: '1px',
+                    }}
+                  >
                     {entry.title}
-                    <div className="text-sm text-neutral-600 dark:text-neutral-400">
+                    <div
+                      style={{
+                        fontSize: '0.8rem',
+                      }}
+                    >
                       <time dateTime={format(createdAt, 'yyyy-M-dd')}>
                         {format(createdAt, 'LLLL d, yyyy')}
                       </time>

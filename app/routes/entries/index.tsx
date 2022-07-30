@@ -1,4 +1,8 @@
-import type { LoaderFunction, MetaFunction } from '@remix-run/cloudflare';
+import type {
+  LoaderFunction,
+  MetaFunction,
+  LinksFunction,
+} from '@remix-run/cloudflare';
 import { json } from '@remix-run/cloudflare';
 import { Link, useLoaderData } from '@remix-run/react';
 import { z } from 'zod';
@@ -7,6 +11,7 @@ import { Layout } from '../../components/Layout';
 import { BreadcrumbItem } from '~/components/Breadcrumb';
 import { H1 } from '~/components/Heading';
 import { format, parseISO } from 'date-fns';
+import styles from '~/styles/entries.css';
 
 type Entry = { title: string; createdAt: string; path: string };
 type EntryMap = Record<string, Entry>;
@@ -31,6 +36,8 @@ function sortEntryByDateDesc(entries: Entry[]): Entry[] {
 
   return result;
 }
+
+export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }];
 
 export const loader: LoaderFunction = async ({ request }) => {
   const entriesUrl = `${new URL(request.url).origin}/content/entries.json`;
@@ -66,29 +73,18 @@ export default function Index() {
     <Layout breadcrumb={<BreadcrumbItem href="/entries" text="writings" />}>
       <H1>Writings</H1>
       <section>
-        <ul>
+        <ul className="list">
           {entries.map((entry, i) => {
             const createdAt = parseISO(entry.createdAt);
 
             return (
-              <li key={i}>
+              <li key={i} className="list-item">
                 <Link to={entry.path}>
-                  <div
-                    style={{
-                      padding: '1rem 0',
-                      borderBottomWidth: '1px',
-                    }}
-                  >
-                    {entry.title}
-                    <div
-                      style={{
-                        fontSize: '0.8rem',
-                      }}
-                    >
-                      <time dateTime={format(createdAt, 'yyyy-M-dd')}>
-                        {format(createdAt, 'LLLL d, yyyy')}
-                      </time>
-                    </div>
+                  {entry.title}
+                  <div className="list-item-meta">
+                    <time dateTime={format(createdAt, 'yyyy-M-dd')}>
+                      {format(createdAt, 'LLLL d, yyyy')}
+                    </time>
                   </div>
                 </Link>
               </li>

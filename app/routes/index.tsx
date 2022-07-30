@@ -1,50 +1,23 @@
+import type { LinksFunction } from '@remix-run/cloudflare';
 import { Link } from '@remix-run/react';
-
 import { H2 } from '~/components/Heading';
 import { Layout } from '~/components/Layout';
+import styles from '~/styles/root.css';
+
+export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }];
 
 export default function Index() {
   return (
     <Layout>
-      <h1 style={{ display: 'none' }}>ytakhs.com</h1>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'flex-start',
-          gap: '1rem',
-          padding: '2rem 0',
-        }}
-      >
-        <figure
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            padding: '0 0.5rem',
-            maxWidth: '30%',
-            maxHeight: '30%',
-          }}
-        >
-          <img
-            style={{
-              borderRadius: '9999px',
-              borderWidth: '1px',
-              borderColor: 'rgb(30 41 59)',
-            }}
-            src="/images/icon.svg"
-            alt="icon"
-          />
+      <h1 className="title">ytakhs.com</h1>
+      <div className="container">
+        <figure className="main-icon">
+          <img src="/images/icon.svg" alt="icon" />
         </figure>
         <div>
-          <H2 style={{ padding: 0 }}>About me</H2>
-          <ul
-            style={{
-              padding: '1rem',
-              letterSpacing: '0.1rem',
-              lineHeight: '2rem',
-            }}
-          >
-            <li>
+          <H2 className="section-title">About me</H2>
+          <ul className="list">
+            <li className="list-item">
               GitHub:{' '}
               <a
                 href="https://github.com/ytakhs"
@@ -55,7 +28,7 @@ export default function Index() {
                 ytakhs
               </a>
             </li>
-            <li>
+            <li className="list-item">
               Twitter:{' '}
               <a
                 href="https://twitter.com/ytakhs"
@@ -67,15 +40,9 @@ export default function Index() {
               </a>
             </li>
           </ul>
-          <H2 style={{ padding: 0 }}>Content</H2>
-          <ul
-            style={{
-              padding: '1rem',
-              letterSpacing: '0.1rem',
-              lineHeight: '1.5rem',
-            }}
-          >
-            <li>
+          <H2 className="section-title">Content</H2>
+          <ul className="list">
+            <li className="list-item">
               Writings:{' '}
               <Link
                 to="/entries"

@@ -12,6 +12,7 @@ import { BreadcrumbItem } from '~/components/Breadcrumb';
 import { H1 } from '~/components/Heading';
 import { format, parseISO } from 'date-fns';
 import styles from '~/styles/entries.css';
+import { links as layoutLinks } from '~/components/Layout';
 
 type Entry = { title: string; createdAt: string; path: string };
 type EntryMap = Record<string, Entry>;
@@ -37,7 +38,10 @@ function sortEntryByDateDesc(entries: Entry[]): Entry[] {
   return result;
 }
 
-export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }];
+export const links: LinksFunction = () => [
+  { rel: 'stylesheet', href: styles },
+  ...layoutLinks(),
+];
 
 export const loader: LoaderFunction = async ({ request }) => {
   const entriesUrl = `${new URL(request.url).origin}/content/entries.json`;

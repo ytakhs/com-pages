@@ -1,7 +1,10 @@
 import React from 'react';
 import type { FC } from 'react';
-
+import type { LinksFunction } from '@remix-run/cloudflare';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbSep } from '../Breadcrumb';
+import styles from './index.css';
+
+export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }];
 
 export const Layout: FC<{
   children: React.ReactNode;
@@ -9,8 +12,8 @@ export const Layout: FC<{
 }> = ({ children, breadcrumb }) => {
   return (
     <>
-      <header className="sticky top-0 py-4 bg-slate-50 dark:bg-slate-900">
-        <div className="px-4 m-auto w-[95%] lg:px-0 lg:w-full lg:max-w-3xl">
+      <header className="header">
+        <div className="header-content">
           <Breadcrumb>
             <BreadcrumbItem href="/" text="ytakhs.com" />
             {breadcrumb ? (
@@ -23,11 +26,11 @@ export const Layout: FC<{
         </div>
       </header>
 
-      <main className="px-4 m-auto w-[95%] rounded-md lg:w-full lg:max-w-4xl">
-        <div className="m-auto w-full lg:max-w-3xl">{children}</div>
+      <main className="main">
+        <div className="main-content">{children}</div>
       </main>
 
-      <footer className="p-8"></footer>
+      <footer className="footer"></footer>
     </>
   );
 };

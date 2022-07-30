@@ -1,0 +1,36 @@
+.header {
+  position: sticky;
+  top: 0;
+  padding: 1rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.header-content {
+  width: 95%;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+}
+
+.main-content {
+  width: 95%;
+}
+
+.footer {
+  padding: 2rem 0;
+}
+
+@media (min-width: 1024px) {
+  .header-content {
+    width: 100%;
+    max-width: 768px;
+  }
+
+  .main-content {
+    width: 100%;
+    max-width: 768px;
+  }
+}

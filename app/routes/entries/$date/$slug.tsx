@@ -1,4 +1,8 @@
-import type { LoaderFunction, MetaFunction } from '@remix-run/cloudflare';
+import type {
+  LoaderFunction,
+  MetaFunction,
+  LinksFunction,
+} from '@remix-run/cloudflare';
 import { json } from '@remix-run/cloudflare';
 import { useLoaderData } from '@remix-run/react';
 import { BreadcrumbItem } from '~/components/Breadcrumb';
@@ -8,6 +12,8 @@ import { Markdown } from '~/components/Markdown';
 import type { Entry, EntryMap } from '~/domains/entry';
 import { validateEntry, validateEntryMap } from '~/domains/entry';
 import { removeTralingSlash } from '~/utils/url';
+import styles from '~/styles/entries/$date/$slug.css';
+import { format, parseISO } from 'date-fns';
 
 const baseUrl = 'https://ytakhs.com';
 export const meta: MetaFunction = ({ data }) => {
@@ -27,6 +33,8 @@ export const meta: MetaFunction = ({ data }) => {
     'twitter:card': 'summary',
   };
 };
+
+export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }];
 
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);
@@ -49,17 +57,27 @@ export const loader: LoaderFunction = async ({ request }) => {
 };
 
 export default function Index() {
-  const entry = useLoaderData();
+  const entry = useLoaderData<Entry>();
+
+  const { content } = entry;
+  const createdAt = parseISO(entry.createdAt);
 
   return (
     <Layout breadcrumb={<BreadcrumbItem href="/entries" text="writings" />}>
       <article>
-        <H1>{entry.title}</H1>
-        <div className="text-sm text-neutral-600 dark:text-neutral-400">
-          <span className="pr-2">Created at:</span>
-        </div>
-        <div className="py-2">
-          <Markdown markdown={entry.content} />
+        <div className="entry">
+          <div className="entry-meta">
+            <H1>{entry.title}</H1>
+            <div className="entry-meta-date">
+              <span>Created at:</span>
+              <time dateTime={format(createdAt, 'yyyy-M-dd')}>
+                {format(createdAt, 'LLLL d, yyyy')}
+              </time>
+            </div>
+          </div>
+          <div>
+            <Markdown markdown={content} />
+          </div>
         </div>
       </article>
     </Layout>

@@ -8,9 +8,11 @@ import {
   ScrollRestoration,
 } from '@remix-run/react';
 
-import styles from './styles/app.css';
+import legacy from './styles/app.css';
+import styles from './styles/index.css';
 
 export const links: LinksFunction = () => [
+  { rel: 'stylesheet', href: legacy },
   { rel: 'stylesheet', href: styles },
   {
     rel: 'apple-touch-icon',
@@ -46,14 +48,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body
-        className="
-        font-sans text-tiny text-left text-slate-800 dark:text-slate-300
-        break-words bg-slate-50
-        dark:bg-slate-900
-        sm:text-base
-      "
-      >
+      <body>
         <Outlet />
         <ScrollRestoration />
         <Scripts />

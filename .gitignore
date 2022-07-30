@@ -5,6 +5,7 @@ node_modules
 /functions/\[\[path\]\].js.map
 /public/build
 /public/content
+/public/feeds
 .env
 
 /app/styles/app.css

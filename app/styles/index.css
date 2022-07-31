@@ -9,6 +9,51 @@ body {
   background-color: #fff;
 }
 
+h1 {
+  padding: 0.75rem 0;
+  font-size: 1.875rem;
+  font-weight: 500;
+  letter-spacing: 0.025rem;
+  line-height: 1.25rem;
+}
+
+h2 {
+  padding: 0.75rem 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.025rem;
+  line-height: 1.25rem;
+}
+
+h3 {
+  padding: 0.75rem 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+h4 {
+  padding: 0.5rem 0;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+h5 {
+  padding: 0.25rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+h6 {
+  padding: 0.25rem;
+  font-size: 1rem;
+}
+
+.has-anchor {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 @media (prefers-color-scheme: dark) {
   body {
     color: #cbd5e1;
@@ -19,5 +64,29 @@ body {
 @media (min-width: 640px) {
   body {
     font-size: 1.125rem;
+  }
+
+  h1 {
+    font-size: 2.25rem;
+  }
+
+  h2 {
+    font-size: 1.875rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  h4 {
+    font-size: 1.25rem;
+  }
+
+  h5 {
+    font-size: 1.125rem;
+  }
+
+  h6 {
+    font-size: 1rem;
   }
 }

@@ -7,7 +7,6 @@ import type {
 import { json } from '@remix-run/cloudflare';
 import { useLoaderData } from '@remix-run/react';
 import { BreadcrumbItem } from '~/components/Breadcrumb';
-import { H1 } from '~/components/Heading';
 import { Layout } from '~/components/Layout';
 import { Markdown } from '~/components/Markdown';
 import type { Entry, EntryMap } from '~/domains/entry';
@@ -71,7 +70,7 @@ export default function Index() {
       <article>
         <div className="entry">
           <div className="entry-meta">
-            <H1>{entry.title}</H1>
+            <h1>{entry.title}</h1>
             <div className="entry-meta-date">
               <span>Created at:</span>
               <time dateTime={format(createdAt, 'yyyy-M-dd')}>

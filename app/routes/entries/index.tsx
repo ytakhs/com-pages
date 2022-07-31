@@ -9,7 +9,6 @@ import { z } from 'zod';
 import { schemaForType } from '~/utils/zod';
 import { Layout } from '../../components/Layout';
 import { BreadcrumbItem } from '~/components/Breadcrumb';
-import { H1 } from '~/components/Heading';
 import { format, parseISO } from 'date-fns';
 import styles from '~/styles/entries.css';
 import { links as layoutLinks } from '~/components/Layout';
@@ -75,7 +74,7 @@ export default function Index() {
 
   return (
     <Layout breadcrumb={<BreadcrumbItem href="/entries" text="writings" />}>
-      <H1>Writings</H1>
+      <h1>Writings</h1>
       <section>
         <ul className="list">
           {entries.map((entry, i) => {

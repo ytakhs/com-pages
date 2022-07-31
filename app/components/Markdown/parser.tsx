@@ -1,6 +1,5 @@
 import type { marked } from 'marked';
 import type { ReactNode } from 'react';
-import { H1, H2, H3, H4, H5, H6 } from '../Heading';
 import { Syntax } from './syntax';
 
 function isObjectAccessible(val: unknown): val is { [key: string]: unknown } {
@@ -39,24 +38,34 @@ export function parseMarkdown(tokens: marked.Token[]): ReactNode[] {
         switch (token.depth) {
           case 1:
             return (
-              <H1 key={token.raw} hasAnchor={true}>
+              <h1
+                id={encodeURI(token.text)}
+                className="has-anchor"
+                key={token.raw}
+              >
+                <a href={`#${encodeURI(token.text)}`}>#</a>
                 {inline}
-              </H1>
+              </h1>
             );
           case 2:
             return (
-              <H2 key={token.raw} hasAnchor={true}>
+              <h2
+                id={encodeURI(token.text)}
+                className="has-anchor"
+                key={token.raw}
+              >
+                <a href={`#${encodeURI(token.text)}`}>#</a>
                 {inline}
-              </H2>
+              </h2>
             );
           case 3:
-            return <H3 key={token.raw}>{inline}</H3>;
+            return <h3 key={token.raw}>{inline}</h3>;
           case 4:
-            return <H4 key={token.raw}>{inline}</H4>;
+            return <h4 key={token.raw}>{inline}</h4>;
           case 5:
-            return <H5 key={token.raw}>{inline}</H5>;
+            return <h5 key={token.raw}>{inline}</h5>;
           case 6:
-            return <H6 key={token.raw}>{inline}</H6>;
+            return <h6 key={token.raw}>{inline}</h6>;
           default:
             throw Error(`invalid heading ${token.depth}`);
         }

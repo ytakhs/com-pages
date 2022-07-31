@@ -1,6 +1,5 @@
 import type { LinksFunction } from '@remix-run/cloudflare';
 import { Link } from '@remix-run/react';
-import { H2 } from '~/components/Heading';
 import { Layout } from '~/components/Layout';
 import styles from '~/styles/root.css';
 import { links as layoutLinks } from '~/components/Layout';
@@ -19,7 +18,7 @@ export default function Index() {
           <img src="/images/icon.svg" alt="icon" />
         </figure>
         <div>
-          <H2 className="section-title">About me</H2>
+          <h2 className="section-title">About me</h2>
           <ul className="list">
             <li className="list-item">
               GitHub:{' '}
@@ -44,7 +43,7 @@ export default function Index() {
               </a>
             </li>
           </ul>
-          <H2 className="section-title">Content</H2>
+          <h2 className="section-title">Content</h2>
           <ul className="list">
             <li className="list-item">
               Writings:{' '}

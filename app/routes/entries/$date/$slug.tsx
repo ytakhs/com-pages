@@ -6,7 +6,6 @@ import type {
 } from '@remix-run/cloudflare';
 import { json } from '@remix-run/cloudflare';
 import { useLoaderData } from '@remix-run/react';
-import { BreadcrumbItem } from '~/components/Breadcrumb';
 import { Layout } from '~/components/Layout';
 import { Markdown } from '~/components/Markdown';
 import type { Entry, EntryMap } from '~/domains/entry';
@@ -66,7 +65,7 @@ export default function Index() {
   const createdAt = parseISO(entry.createdAt);
 
   return (
-    <Layout breadcrumb={<BreadcrumbItem href="/entries" text="writings" />}>
+    <Layout breadcrumbs={[{ href: '/entries', label: 'writings' }]}>
       <article>
         <div className="entry">
           <div className="entry-meta">

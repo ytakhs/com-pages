@@ -23,6 +23,13 @@
   padding: 2rem 0;
 }
 
+.breadcrumb {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 @media (min-width: 1024px) {
   .header-content {
     width: 100%;

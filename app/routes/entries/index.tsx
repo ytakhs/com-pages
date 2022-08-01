@@ -8,7 +8,6 @@ import { Link, useLoaderData } from '@remix-run/react';
 import { z } from 'zod';
 import { schemaForType } from '~/utils/zod';
 import { Layout } from '../../components/Layout';
-import { BreadcrumbItem } from '~/components/Breadcrumb';
 import { format, parseISO } from 'date-fns';
 import styles from '~/styles/entries.css';
 import { links as layoutLinks } from '~/components/Layout';
@@ -73,7 +72,7 @@ export default function Index() {
   const { entries } = useLoaderData<LoaderData>();
 
   return (
-    <Layout breadcrumb={<BreadcrumbItem href="/entries" text="writings" />}>
+    <Layout breadcrumbs={[{ href: '/entries', label: 'writings' }]}>
       <h1>Writings</h1>
       <section>
         <ul className="list">

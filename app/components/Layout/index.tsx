@@ -1,28 +1,38 @@
 import React from 'react';
 import type { FC } from 'react';
 import type { LinksFunction } from '@remix-run/cloudflare';
-import { Breadcrumb, BreadcrumbItem, BreadcrumbSep } from '../Breadcrumb';
 import styles from './index.css';
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }];
 
+type Breadcrumb = {
+  label: string;
+  href: string;
+};
+
 export const Layout: FC<{
   children: React.ReactNode;
-  breadcrumb?: React.ReactNode;
-}> = ({ children, breadcrumb }) => {
+  breadcrumbs: ReadonlyArray<Breadcrumb>;
+}> = ({ children, breadcrumbs }) => {
   return (
     <>
       <header className="header">
         <div className="header-content">
-          <Breadcrumb>
-            <BreadcrumbItem href="/" text="ytakhs.com" />
-            {breadcrumb ? (
-              <>
-                <BreadcrumbSep />
-                {breadcrumb}
-              </>
-            ) : null}
-          </Breadcrumb>
+          <nav>
+            <ul className="breadcrumb">
+              <li>
+                <a href="/">ytakhs.com</a>
+              </li>
+              {breadcrumbs.map(({ label, href }) => (
+                <>
+                  <li>/</li>
+                  <li key={label}>
+                    <a href={href}>{label}</a>
+                  </li>
+                </>
+              ))}
+            </ul>
+          </nav>
         </div>
       </header>
 

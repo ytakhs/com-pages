@@ -11,7 +11,7 @@ export const links: LinksFunction = () => [
 
 export default function Index() {
   return (
-    <Layout>
+    <Layout breadcrumbs={[]}>
       <h1 className="title">ytakhs.com</h1>
       <div className="container">
         <figure className="main-icon">

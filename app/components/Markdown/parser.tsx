@@ -15,17 +15,14 @@ export function parseMarkdown(tokens: marked.Token[]): ReactNode[] {
     switch (token.type) {
       case 'blockquote': {
         return (
-          <blockquote
-            className="pl-3 ml-2 rounded-l-sm border-l-4 border-slate-400"
-            key={token.raw}
-          >
+          <blockquote className="md-blockquote" key={token.raw}>
             {parseInline(token.tokens)}
           </blockquote>
         );
       }
       case 'code': {
         return (
-          <div className="rounded" key={token.raw}>
+          <div className="md-code" key={token.raw}>
             <Syntax language={token.lang} PreTag="pre">
               {token.text}
             </Syntax>
@@ -91,7 +88,7 @@ export function parseMarkdown(tokens: marked.Token[]): ReactNode[] {
 
           const content = [...task, ...parseMarkdown(item.tokens)];
           return (
-            <li className="list-item py-1.5 leading-relaxed" key={item.raw}>
+            <li className="md-list-item" key={item.raw}>
               {content}
             </li>
           );
@@ -105,7 +102,7 @@ export function parseMarkdown(tokens: marked.Token[]): ReactNode[] {
       }
       case 'paragraph': {
         return (
-          <p className="py-3 tracking-wider leading-relaxed" key={token.raw}>
+          <p className="md-paragraph" key={token.raw}>
             {parseInline(token.tokens)}
           </p>
         );
@@ -161,10 +158,7 @@ function parseInline(tokens: marked.Token[]): ReactNode[] {
         const { text } = token;
 
         return (
-          <code
-            className="py-0.5 px-1 dark:text-slate-800 bg-slate-300 dark:bg-slate-400 rounded-sm"
-            key={token.raw}
-          >
+          <code className="md-inline-code" key={token.raw}>
             {unescapeText(text)}
           </code>
         );
@@ -199,14 +193,14 @@ function parseInline(tokens: marked.Token[]): ReactNode[] {
         }
 
         return (
-          <a className="border-b" href={href} key={token.raw} {...props}>
+          <a className="md-inline-link" href={href} key={token.raw} {...props}>
             {parseInline(token.tokens)}
           </a>
         );
       }
       case 'paragraph': {
         return (
-          <p key={token.text} className="py-3 tracking-wider leading-relaxed">
+          <p key={token.text} className="md-inline-paragraph">
             {parseInline(token.tokens)}
           </p>
         );

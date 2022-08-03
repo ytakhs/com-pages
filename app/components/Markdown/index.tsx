@@ -1,6 +1,10 @@
 import { Lexer } from 'marked';
 import type { FC } from 'react';
+import type { LinksFunction } from '@remix-run/cloudflare';
 import { parseMarkdown } from './parser';
+import styles from './index.css';
+
+export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }];
 
 type Props = {
   markdown: string;

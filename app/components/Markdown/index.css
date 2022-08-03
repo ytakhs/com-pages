@@ -1,0 +1,46 @@
+.md-blockquote {
+  padding: 0.75rem 0;
+  margin-left: 0.5rem;
+  border-top-left-radius: 0.125rem;
+  border-bottom-left-radius: 0.125rem;
+  border-color: #94a3b8;
+}
+
+.md-code {
+  border-radius: 0.25rem;
+}
+
+.md-list-item {
+  display: list-item;
+  padding: 0.375rem 0;
+  line-height: 2rem;
+}
+
+.md-paragraph {
+  padding: 0.75rem 0;
+  letter-spacing: 0.05rem;
+  line-height: 2rem;
+}
+
+.md-inline-code {
+  padding: 0.125rem 0.25rem;
+  background-color: #cbd5e1;
+  color: #1e293b;
+  border-radius: 0.125rem;
+}
+
+.md-inline-link {
+  border-bottom-width: 1px;
+}
+
+.md-inline-paragraph {
+  padding: 0.75rem 0;
+  letter-spacing: 0.05rem;
+  line-height: 2rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .md-inline-code {
+    background-color: #94a3b8;
+  }
+}

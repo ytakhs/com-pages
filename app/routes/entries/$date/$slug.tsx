@@ -13,6 +13,7 @@ import { validateEntry, validateEntryMap } from '~/domains/entry';
 import { removeTralingSlash } from '~/utils/url';
 import styles from '~/styles/entries/$date/$slug.css';
 import { links as layoutLinks } from '~/components/Layout';
+import { links as markdownLinks } from '~/components/Markdown';
 
 const baseUrl = 'https://ytakhs.com';
 export const meta: MetaFunction = ({ data }) => {
@@ -36,6 +37,7 @@ export const meta: MetaFunction = ({ data }) => {
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: styles },
   ...layoutLinks(),
+  ...markdownLinks(),
 ];
 
 export const loader: LoaderFunction = async ({ request }) => {

@@ -97,7 +97,11 @@ export function parseMarkdown(tokens: marked.Token[]): ReactNode[] {
         if (token.ordered) {
           return <ol key={token.raw}>{itemList}</ol>;
         } else {
-          return <ul key={token.raw}>{itemList}</ul>;
+          return (
+            <ul className="md-ul-list" key={token.raw}>
+              {itemList}
+            </ul>
+          );
         }
       }
       case 'paragraph': {
@@ -219,7 +223,7 @@ function parseInline(tokens: marked.Token[]): ReactNode[] {
 }
 
 function unescapeText(text: string): string {
-  return text.replace(/&(?:amp|quet|gt|lt);/g, (v) => {
+  return text.replace(/&(?:amp|quet|gt|lt|#39);/g, (v) => {
     switch (v) {
       case '&amp;':
         return '&';
@@ -229,6 +233,8 @@ function unescapeText(text: string): string {
         return '>';
       case '&lt;':
         return '<';
+      case '&#39;':
+        return "'";
       default:
         return '';
     }

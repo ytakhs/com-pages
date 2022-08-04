@@ -10,6 +10,16 @@
   border-radius: 0.25rem;
 }
 
+.md-ul-list {
+  padding-left: 1.5rem;
+  list-style: circle;
+}
+
+.md-ol-list {
+  padding-left: 1.5rem;
+  list-style: decimal;
+}
+
 .md-list-item {
   display: list-item;
   padding: 0.375rem 0;
@@ -30,6 +40,8 @@
 }
 
 .md-inline-link {
+  border-bottom-color: #1e293b;
+  border-bottom-style: solid;
   border-bottom-width: 1px;
 }
 
@@ -42,5 +54,9 @@
 @media (prefers-color-scheme: dark) {
   .md-inline-code {
     background-color: #94a3b8;
+  }
+
+  .md-inline-link {
+    border-bottom-color: #cbd5e1;
   }
 }

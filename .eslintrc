@@ -4,13 +4,12 @@
   "parserOptions": {
     "project": ["./tsconfig.json"]
   },
-  "plugins": ["@typescript-eslint", "react", "tailwindcss"],
+  "plugins": ["@typescript-eslint", "react"],
   "extends": [
     "@remix-run/eslint-config",
     "plugin:@typescript-eslint/recommended",
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:tailwindcss/recommended",
     "prettier"
   ],
   "rules": {

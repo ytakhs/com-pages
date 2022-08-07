@@ -21,23 +21,23 @@ export default function Index() {
           <h2 className="section-title">About me</h2>
           <ul className="list">
             <li className="list-item">
-              GitHub:{' '}
+              GitHub:
               <a
                 href="https://github.com/ytakhs"
                 target="_blank"
                 rel="noreferrer"
-                className="underline"
+                className='list-item-link'
               >
                 ytakhs
               </a>
             </li>
             <li className="list-item">
-              Twitter:{' '}
+              Twitter:
               <a
                 href="https://twitter.com/ytakhs"
                 target="_blank"
                 rel="noreferrer"
-                className="underline"
+                className='list-item-link'
               >
                 @ytakhs
               </a>
@@ -46,12 +46,10 @@ export default function Index() {
           <h2 className="section-title">Content</h2>
           <ul className="list">
             <li className="list-item">
-              Writings:{' '}
+              Writings:
               <Link
                 to="/entries"
-                style={{
-                  textDecorationLine: 'underline',
-                }}
+                className='list-item-link'
               >
                 /entries
               </Link>

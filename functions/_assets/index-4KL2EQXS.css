@@ -1,0 +1,43 @@
+.header {
+  position: sticky;
+  top: 0;
+  padding: 1rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.header-content {
+  width: 90%;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+}
+
+.main-content {
+  width: 90%;
+}
+
+.footer {
+  padding: 2rem 0;
+}
+
+.breadcrumb {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (min-width: 1024px) {
+  .header-content {
+    width: 100%;
+    padding: 0 2rem;
+  }
+
+  .main-content {
+    width: 100%;
+    max-width: 768px;
+  }
+}

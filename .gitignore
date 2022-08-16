@@ -8,4 +8,4 @@ node_modules
 /public/feeds
 .env
 
-/app/styles/app.css
+/app/styles

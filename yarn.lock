@@ -1297,10 +1297,10 @@
   dependencies:
     mime "^3.0.0"
 
-"@cloudflare/workers-types@^3.13.0":
-  version "3.13.0"
-  resolved "https://registry.yarnpkg.com/@cloudflare/workers-types/-/workers-types-3.13.0.tgz#4483374809e328535ff136a73fb9c51fa3423e01"
-  integrity sha512-oyhzfYlWBLgd9odJ/WHcsD/8B+IaAjSD+OcPEGLzX5kGRONjwcW3NY0WQfsVIhQzZ6AbPzjwkmj4D2VFwU1xRQ==
+"@cloudflare/workers-types@^3.14.1":
+  version "3.14.1"
+  resolved "https://registry.yarnpkg.com/@cloudflare/workers-types/-/workers-types-3.14.1.tgz#8927ad8aa4e4cdd42d25793148337ed04f927021"
+  integrity sha512-B1/plF62pt+H2IJHvApK8fdOJAVsvojvacuac8x8s+JIyqbropMyqNqHTKLm3YD8ZFLGwYeFTudU+PQ7vGvBdA==
 
 "@cspotcode/source-map-support@^0.8.0":
   version "0.8.1"
@@ -1618,13 +1618,21 @@
   dependencies:
     "@remix-run/cloudflare" "1.6.1"
 
-"@remix-run/cloudflare@1.6.1", "@remix-run/cloudflare@^1.6.1":
+"@remix-run/cloudflare@1.6.1":
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/@remix-run/cloudflare/-/cloudflare-1.6.1.tgz#fdd5df6faa13a328ea520ca8718fcca58c08728e"
   integrity sha512-djq98M7sac7mf0a0KzLNfo3DDPAcDpOahIveBhfXP0QMTVfeXhaVT2hgMs20RT8JuRR+ytnrxvY3Ii99IPtX2g==
   dependencies:
     "@cloudflare/kv-asset-handler" "^0.1.3"
     "@remix-run/server-runtime" "1.6.1"
+
+"@remix-run/cloudflare@^1.6.8":
+  version "1.6.8"
+  resolved "https://registry.yarnpkg.com/@remix-run/cloudflare/-/cloudflare-1.6.8.tgz#29bea7abcfe5567ecfead3078aae171aeea332af"
+  integrity sha512-NHHpdmRHPPAaAml9c0Z0s/KcZzcrMXSH/J/MroDd7lT2Q6PpBCXuEm5Ua+TrGnAn6CdkPWr2LV1YaC2cyg9LRw==
+  dependencies:
+    "@cloudflare/kv-asset-handler" "^0.1.3"
+    "@remix-run/server-runtime" "1.6.8"
 
 "@remix-run/dev@^1.6.8":
   version "1.6.8"

@@ -43,7 +43,7 @@
   border-bottom-color: #1e293b;
   border-bottom-style: solid;
   border-bottom-width: 1px;
-  overflow-wrap: break-word;
+  word-break: break-all;
 }
 
 .md-inline-paragraph {

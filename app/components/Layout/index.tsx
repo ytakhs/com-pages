@@ -1,7 +1,7 @@
 import React from 'react';
 import type { FC } from 'react';
 import type { LinksFunction } from '@remix-run/cloudflare';
-import styles from './index.css';
+import styles from '~/styles/components/Layout/index.css';
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }];
 

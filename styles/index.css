@@ -52,6 +52,7 @@ h6 {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  scroll-margin-top: 56px;
 }
 
 @media (prefers-color-scheme: dark) {

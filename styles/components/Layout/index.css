@@ -4,6 +4,15 @@
   padding: 1rem 0;
   display: flex;
   justify-content: center;
+  color: #1e293b;
+  background-color: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  .header {
+    color: #cbd5e1;
+    background-color: #0f172a;
+  }
 }
 
 .header-content {

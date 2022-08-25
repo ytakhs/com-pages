@@ -75,24 +75,24 @@ export default function Index() {
     <Layout breadcrumbs={[{ href: '/entries', label: 'writings' }]}>
       <h1>Writings</h1>
       <section>
-        <ul className="list">
+        <div className="grid">
           {entries.map((entry, i) => {
             const createdAt = parseISO(entry.createdAt);
 
             return (
-              <li key={i} className="list-item">
-                <Link to={entry.path}>
+              <div className="grid-item" key={i}>
+                <Link to={entry.path} className="grid-item-content">
                   {entry.title}
-                  <div className="list-item-meta">
+                  <div className="grid-item-meta">
                     <time dateTime={format(createdAt, 'yyyy-M-dd')}>
                       {format(createdAt, 'LLLL d, yyyy')}
                     </time>
                   </div>
                 </Link>
-              </li>
+              </div>
             );
           })}
-        </ul>
+        </div>
       </section>
     </Layout>
   );

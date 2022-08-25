@@ -4,7 +4,7 @@
   padding: 1rem 0;
   display: flex;
   justify-content: center;
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(3px);
 }
 
 .header-content {

@@ -1,18 +1,19 @@
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   grid-auto-rows: 1fr;
   gap: 1rem;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 640px) {
   .grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 .grid-item {
-  padding: 0.5rem;
+  position: relative;
+  padding-bottom: 100%;
   border-radius: 0.5rem;
   background-color: #cbd5e1;
 }
@@ -24,6 +25,11 @@
 }
 
 .grid-item-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

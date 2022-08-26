@@ -1,4 +1,4 @@
-.grid {
+.entry {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-auto-rows: 1fr;
@@ -6,12 +6,12 @@
 }
 
 @media (min-width: 640px) {
-  .grid {
+  .entry {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-.grid-item {
+.entry-item {
   position: relative;
   padding-bottom: 100%;
   border-radius: 0.5rem;
@@ -19,12 +19,12 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .grid-item {
+  .entry-item {
     background-color: #1e293b;
   }
 }
 
-.grid-item-content {
+.entry-item-content {
   position: absolute;
   top: 0;
   left: 0;
@@ -37,6 +37,6 @@
   height: 100%;
 }
 
-.grid-item-meta {
+.entry-item-meta {
   font-size: 0.8rem;
 }

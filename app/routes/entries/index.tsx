@@ -12,7 +12,12 @@ import { format, parseISO } from "date-fns";
 import styles from "~/styles/entries.css";
 import { links as layoutLinks } from "~/components/Layout";
 
-type Entry = { title: string; createdAt: string; path: string };
+type Entry = {
+  title: string;
+  createdAt: string;
+  path: string;
+  emoji?: string | undefined;
+};
 type EntryMap = Record<string, Entry>;
 type LoaderData = {
   entries: ReadonlyArray<Entry>;
@@ -49,7 +54,12 @@ export const loader: LoaderFunction = async ({ request }) => {
   const schema = schemaForType<EntryMap>()(
     z.record(
       z.string(),
-      z.object({ title: z.string(), createdAt: z.string(), path: z.string() })
+      z.object({
+        title: z.string(),
+        createdAt: z.string(),
+        path: z.string(),
+        emoji: z.string().optional(),
+      })
     )
   );
   const entryMap = schema.parse(data);
@@ -83,7 +93,9 @@ export default function Index() {
               <div className="entry-item" key={i}>
                 <Link to={entry.path}>
                   <div className="entry-item-content">
-                    <span className="entry-item-emoji">📃</span>
+                    <span className="entry-item-emoji">
+                      {entry.emoji ?? "📃"}
+                    </span>
                     <div className="entry-item-text">
                       {entry.title}
                       <div className="entry-item-meta">

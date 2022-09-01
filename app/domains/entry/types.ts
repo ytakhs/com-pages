@@ -3,6 +3,7 @@ export type Entry = {
   content: string;
   createdAt: string;
   path: string;
+  emoji: string | undefined;
   description?: string | undefined;
 };
 

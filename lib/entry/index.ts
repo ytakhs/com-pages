@@ -1,12 +1,12 @@
-import assert from 'assert';
-import { formatISO } from 'date-fns';
-import fs from 'fs';
-import matter from 'gray-matter';
-import path, { posix } from 'path';
+import assert from "assert";
+import { formatISO } from "date-fns";
+import fs from "fs";
+import matter from "gray-matter";
+import path, { posix } from "path";
 
 const contentDir = path.join(
   process.cwd(),
-  process.env.CONTENT_DIR || 'content'
+  process.env.CONTENT_DIR || "content"
 );
 
 export type EntryMatter = {
@@ -14,6 +14,7 @@ export type EntryMatter = {
   description?: string;
   content: string;
   createdAt: string;
+  emoji?: string;
   draft?: boolean;
 };
 
@@ -54,9 +55,9 @@ export function getAllEntryPathParams(
 }
 
 export async function getEntryBy(date: string, slug: string): Promise<Entry> {
-  const fullPath = path.join(contentDir, 'entries', date, slug, 'index.md');
+  const fullPath = path.join(contentDir, "entries", date, slug, "index.md");
   const entryMatter = getEntryMatter(fullPath);
-  const entryPath = path.join('/entries', date, slug);
+  const entryPath = path.join("/entries", date, slug);
 
   return {
     slug,
@@ -76,7 +77,7 @@ function getFilePaths(): string[] {
 
   const paths = recursiveDir(contentDir);
 
-  return paths.filter((p) => p.endsWith('.md'));
+  return paths.filter((p) => p.endsWith(".md"));
 }
 
 function getEntryPathParams(filePath: string): EntryPathParams {
@@ -89,10 +90,10 @@ function getEntryPathParams(filePath: string): EntryPathParams {
 
   const { date, slug } = match.groups;
 
-  assert(date, 'date must be present');
-  assert(slug, 'slug must be present');
+  assert(date, "date must be present");
+  assert(slug, "slug must be present");
 
-  const entryPath = posix.join('/entries', date, slug);
+  const entryPath = posix.join("/entries", date, slug);
   return {
     date,
     slug,
@@ -101,19 +102,20 @@ function getEntryPathParams(filePath: string): EntryPathParams {
 }
 
 function getEntryMatter(fullPath: string): EntryMatter {
-  const fileContent = fs.readFileSync(fullPath, 'utf-8');
+  const fileContent = fs.readFileSync(fullPath, "utf-8");
   const matterResult = matter(fileContent);
   const content = matterResult.content;
-  const { title, description, createdAt, draft } = matterResult.data;
+  const { title, description, createdAt, emoji, draft } = matterResult.data;
 
-  assert(typeof title === 'string', 'title must be string');
-  assert(createdAt instanceof Date, 'createdAt must be Date');
+  assert(typeof title === "string", "title must be string");
+  assert(createdAt instanceof Date, "createdAt must be Date");
 
   return {
     title,
     description: description,
     content,
     createdAt: formatISO(createdAt),
+    emoji,
     draft: draft,
   };
 }

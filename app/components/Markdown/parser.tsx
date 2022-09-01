@@ -1,9 +1,9 @@
-import type { marked } from 'marked';
-import type { ReactNode } from 'react';
-import { Syntax } from './syntax';
+import type { marked } from "marked";
+import type { ReactNode } from "react";
+import { Syntax } from "./syntax";
 
 function isObjectAccessible(val: unknown): val is { [key: string]: unknown } {
-  return typeof val === 'object' && val != null;
+  return typeof val === "object" && val != null;
 }
 
 function hasTokens(tok: unknown): tok is { tokens: marked.Token[] } {
@@ -13,14 +13,14 @@ function hasTokens(tok: unknown): tok is { tokens: marked.Token[] } {
 export function parseMarkdown(tokens: marked.Token[]): ReactNode[] {
   return tokens.map((token) => {
     switch (token.type) {
-      case 'blockquote': {
+      case "blockquote": {
         return (
           <blockquote className="md-blockquote" key={token.raw}>
             {parseInline(token.tokens)}
           </blockquote>
         );
       }
-      case 'code': {
+      case "code": {
         return (
           <div className="md-code" key={token.raw}>
             <Syntax language={token.lang} PreTag="pre">
@@ -29,7 +29,7 @@ export function parseMarkdown(tokens: marked.Token[]): ReactNode[] {
           </div>
         );
       }
-      case 'heading': {
+      case "heading": {
         const inline = parseInline(token.tokens);
 
         switch (token.depth) {
@@ -67,13 +67,13 @@ export function parseMarkdown(tokens: marked.Token[]): ReactNode[] {
             throw Error(`invalid heading ${token.depth}`);
         }
       }
-      case 'hr': {
+      case "hr": {
         return <hr key={token.raw} />;
       }
-      case 'html': {
+      case "html": {
         return token.text;
       }
-      case 'list': {
+      case "list": {
         const itemList = token.items.map((item, i) => {
           const task = item.task
             ? [
@@ -104,20 +104,20 @@ export function parseMarkdown(tokens: marked.Token[]): ReactNode[] {
           );
         }
       }
-      case 'paragraph': {
+      case "paragraph": {
         return (
           <p className="md-paragraph" key={token.raw}>
             {parseInline(token.tokens)}
           </p>
         );
       }
-      case 'space': {
+      case "space": {
         return null;
       }
-      case 'table': {
+      case "table": {
         const headerCells = token.header.map((item, i) => {
           return (
-            <th align={token.align[i] || 'justify'} key={i}>
+            <th align={token.align[i] || "justify"} key={i}>
               {parseInline(item.tokens)}
             </th>
           );
@@ -126,7 +126,7 @@ export function parseMarkdown(tokens: marked.Token[]): ReactNode[] {
           return (
             <td key={index}>
               {cells.map((cel, i) => (
-                <td align={token.align[index] || 'justify'} key={i}>
+                <td align={token.align[index] || "justify"} key={i}>
                   {parseInline(cel.tokens)}
                 </td>
               ))}
@@ -143,7 +143,7 @@ export function parseMarkdown(tokens: marked.Token[]): ReactNode[] {
           </table>
         );
       }
-      case 'text': {
+      case "text": {
         return hasTokens(token) ? parseInline(token.tokens) : token.text;
       }
       default:
@@ -155,10 +155,10 @@ export function parseMarkdown(tokens: marked.Token[]): ReactNode[] {
 function parseInline(tokens: marked.Token[]): ReactNode[] {
   return tokens.map((token) => {
     switch (token.type) {
-      case 'br': {
+      case "br": {
         return <br />;
       }
-      case 'codespan': {
+      case "codespan": {
         const { text } = token;
 
         return (
@@ -167,19 +167,19 @@ function parseInline(tokens: marked.Token[]): ReactNode[] {
           </code>
         );
       }
-      case 'del': {
+      case "del": {
         return <del key={token.raw}>{parseInline(token.tokens)}</del>;
       }
-      case 'em': {
+      case "em": {
         return <em key={token.raw}>{parseInline(token.tokens)}</em>;
       }
-      case 'escape': {
+      case "escape": {
         return token.text;
       }
-      case 'html': {
+      case "html": {
         return token.text;
       }
-      case 'image': {
+      case "image": {
         const { href, text, title } = token;
 
         return (
@@ -188,12 +188,12 @@ function parseInline(tokens: marked.Token[]): ReactNode[] {
           </figure>
         );
       }
-      case 'link': {
+      case "link": {
         const { href } = token;
 
-        let props: { rel: string; target?: string } = { rel: 'noreferrer' };
-        if (href.startsWith('http')) {
-          props = { rel: 'noreferrer nofollow', target: '_blank' };
+        let props: { rel: string; target?: string } = { rel: "noreferrer" };
+        if (href.startsWith("http")) {
+          props = { rel: "noreferrer nofollow", target: "_blank" };
         }
 
         return (
@@ -202,17 +202,17 @@ function parseInline(tokens: marked.Token[]): ReactNode[] {
           </a>
         );
       }
-      case 'paragraph': {
+      case "paragraph": {
         return (
           <p key={token.text} className="md-inline-paragraph">
             {parseInline(token.tokens)}
           </p>
         );
       }
-      case 'strong': {
+      case "strong": {
         return <strong key={token.raw}>{parseInline(token.tokens)}</strong>;
       }
-      case 'text': {
+      case "text": {
         return unescapeText(token.text);
       }
       default: {
@@ -225,18 +225,18 @@ function parseInline(tokens: marked.Token[]): ReactNode[] {
 function unescapeText(text: string): string {
   return text.replace(/&(?:amp|quet|gt|lt|#39);/g, (v) => {
     switch (v) {
-      case '&amp;':
-        return '&';
-      case '&quot;':
+      case "&amp;":
+        return "&";
+      case "&quot;":
         return '"';
-      case '&gt;':
-        return '>';
-      case '&lt;':
-        return '<';
-      case '&#39;':
+      case "&gt;":
+        return ">";
+      case "&lt;":
+        return "<";
+      case "&#39;":
         return "'";
       default:
-        return '';
+        return "";
     }
   });
 }

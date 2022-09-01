@@ -81,12 +81,17 @@ export default function Index() {
 
             return (
               <div className="entry-item" key={i}>
-                <Link to={entry.path} className="entry-item-content">
-                  {entry.title}
-                  <div className="entry-item-meta">
-                    <time dateTime={format(createdAt, "yyyy-M-dd")}>
-                      {format(createdAt, "LLLL d, yyyy")}
-                    </time>
+                <Link to={entry.path}>
+                  <div className="entry-item-content">
+                    <span className="entry-item-emoji">📃</span>
+                    <div className="entry-item-text">
+                      {entry.title}
+                      <div className="entry-item-meta">
+                        <time dateTime={format(createdAt, "yyyy-M-dd")}>
+                          {format(createdAt, "LLLL d, yyyy")}
+                        </time>
+                      </div>
+                    </div>
                   </div>
                 </Link>
               </div>

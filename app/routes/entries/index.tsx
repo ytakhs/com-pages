@@ -91,7 +91,7 @@ export default function Index() {
 
             return (
               <div className="entry-item" key={i}>
-                <Link to={entry.path}>
+                <Link to={entry.path} className="entry-item-link">
                   <div className="entry-item-content">
                     <span className="entry-item-emoji">
                       {entry.emoji ?? "📃"}

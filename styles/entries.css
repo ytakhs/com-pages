@@ -5,6 +5,10 @@
   gap: 1rem;
 }
 
+.entry-item-link {
+  width: 100%;
+}
+
 .entry-item {
   display: flex;
   align-items: center;

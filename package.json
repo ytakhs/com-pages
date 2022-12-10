@@ -2,7 +2,13 @@
   "name": "remix-template-cloudflare-pages",
   "private": true,
   "sideEffects": false,
-  "scripts": {},
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
   "lint-staged": {
     "*.{js,ts,tsx}": "eslint --fix",
     "*.{js,ts,tsx,css,json}": "prettier --write"
@@ -12,8 +18,9 @@
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "date-fns": "^2.29.2",
+    "eslint-config-next": "^13.0.6",
     "marked": "^4.0.19",
-    "next": "^13.0.0",
+    "next": "^13.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-syntax-highlighter": "^15.5.0",

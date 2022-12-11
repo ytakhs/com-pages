@@ -11,7 +11,7 @@ const items: { title: string; href: string }[] = [
   },
 ];
 
-export const Sidebar: FC = () => {
+export const GlobalNavbar: FC = () => {
   return (
     <nav>
       <ul>

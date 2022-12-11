@@ -14,10 +14,15 @@ const items: { title: string; href: string }[] = [
 export const GlobalNavbar: FC = () => {
   return (
     <nav>
-      <ul>
+      <ul className="flex gap-4 md:flex-col">
         {items.map(({ title, href }) => (
           <li key={href}>
-            <a href={href}>{title}</a>
+            <a
+              className="underline underline-offset-4 hover:text-gray-400"
+              href={href}
+            >
+              {title}
+            </a>
           </li>
         ))}
       </ul>

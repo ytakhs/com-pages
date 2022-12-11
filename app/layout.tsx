@@ -1,4 +1,4 @@
-import "./globals.css";
+import "./output.css";
 
 import { ReactNode } from "react";
 
@@ -10,7 +10,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>{children}</body>
+      <body>
+        <div className="bg-slate-900 text-white">{children}</div>
+      </body>
     </html>
   );
 }

@@ -2,7 +2,7 @@ import { ComponentProps, FC } from "react";
 
 export const Header: FC = () => (
   <header>
-    <div>
+    <div className="py-8">
       <a href="/">ytakhs.com</a>
     </div>
   </header>

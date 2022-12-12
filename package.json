@@ -4,8 +4,9 @@
   "sideEffects": false,
   "version": "0.1.0",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "prepare": "husky install",
+    "dev": "concurrently \"next dev --turbo\" \"tailwindcss --input app/globals.css --output app/output.css --watch\"",
+    "build": "tailwindcss app/globals.css --output app/output.css && next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -35,6 +36,7 @@
     "@typescript-eslint/eslint-plugin": "^5.35.1",
     "@typescript-eslint/parser": "^5.36.1",
     "autoprefixer": "^10.4.13",
+    "concurrently": "^7.6.0",
     "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-tailwindcss": "^3.7.1",

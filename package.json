@@ -5,8 +5,8 @@
   "version": "0.1.0",
   "scripts": {
     "prepare": "husky install",
-    "dev": "concurrently \"next dev --turbo\" \"tailwindcss --input app/globals.css --output app/output.css --watch\"",
-    "build": "tailwindcss app/globals.css --output app/output.css && next build",
+    "dev": "next dev",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -20,6 +20,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "date-fns": "^2.29.2",
     "eslint-config-next": "^13.0.6",
+    "js-yaml": "^4.1.0",
     "marked": "^4.0.19",
     "next": "^13.0.6",
     "react": "^18.2.0",
@@ -28,7 +29,9 @@
     "zod": "^3.18.0"
   },
   "devDependencies": {
+    "@types/js-yaml": "^4.0.5",
     "@types/marked": "^4.0.6",
+    "@types/node": "^18.11.14",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@types/react-syntax-highlighter": "^15.5.5",
@@ -36,7 +39,6 @@
     "@typescript-eslint/eslint-plugin": "^5.35.1",
     "@typescript-eslint/parser": "^5.36.1",
     "autoprefixer": "^10.4.13",
-    "concurrently": "^7.6.0",
     "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-tailwindcss": "^3.7.1",

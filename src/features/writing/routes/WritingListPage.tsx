@@ -7,7 +7,7 @@ type Props = {
   writings: ReadonlyArray<Writing>;
 };
 
-export const WritingList: FC<Props> = ({ writings }) => {
+export const WritingListPage: FC<Props> = ({ writings }) => {
   return (
     <Layout>
       <ul>

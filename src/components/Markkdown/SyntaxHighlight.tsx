@@ -2,13 +2,13 @@ import type { ComponentProps, FC } from "react";
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
-import js from "react-syntax-highlighter/dist/esm/languages/prism/javascript";
-import ts from "react-syntax-highlighter/dist/esm/languages/prism/typescript";
-import go from "react-syntax-highlighter/dist/esm/languages/prism/go";
-import rust from "react-syntax-highlighter/dist/esm/languages/prism/rust";
-import zig from "react-syntax-highlighter/dist/esm/languages/prism/zig";
-import json from "react-syntax-highlighter/dist/esm/languages/prism/json";
-import yaml from "react-syntax-highlighter/dist/esm/languages/prism/yaml";
+import js from "react-syntax-highlighter/dist/cjs/languages/prism/javascript";
+import ts from "react-syntax-highlighter/dist/cjs/languages/prism/typescript";
+import go from "react-syntax-highlighter/dist/cjs/languages/prism/go";
+import rust from "react-syntax-highlighter/dist/cjs/languages/prism/rust";
+import zig from "react-syntax-highlighter/dist/cjs/languages/prism/zig";
+import json from "react-syntax-highlighter/dist/cjs/languages/prism/json";
+import yaml from "react-syntax-highlighter/dist/cjs/languages/prism/yaml";
 
 type Props = {
   PreTag: ComponentProps<typeof SyntaxHighlighter>["PreTag"];

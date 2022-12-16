@@ -1,5 +1,6 @@
 import type { marked } from "marked";
 import type { ReactNode } from "react";
+import { TextLink } from "../TextLink/TextLink";
 import { SyntaxHighlight } from "./SyntaxHighlight";
 
 const isObjectAccessible = (
@@ -17,7 +18,12 @@ export const parseMarkdown = (tokens: marked.Token[]): ReactNode[] => {
     switch (token.type) {
       case "blockquote": {
         return (
-          <blockquote key={token.raw}>{parseInline(token.tokens)}</blockquote>
+          <blockquote
+            className="ml-2 border-l-4 border-gray-400 py-2 pl-4"
+            key={token.raw}
+          >
+            {parseInline(token.tokens)}
+          </blockquote>
         );
       }
       case "code": {
@@ -35,26 +41,50 @@ export const parseMarkdown = (tokens: marked.Token[]): ReactNode[] => {
         switch (token.depth) {
           case 1:
             return (
-              <h1 id={encodeURI(token.text)} key={token.raw}>
+              <h1
+                className="inline-flex gap-2 py-2 text-3xl font-bold"
+                id={encodeURI(token.text)}
+                key={token.raw}
+              >
                 <a href={`#${encodeURI(token.text)}`}>#</a>
                 {inline}
               </h1>
             );
           case 2:
             return (
-              <h2 id={encodeURI(token.text)} key={token.raw}>
+              <h2
+                className="inline-flex gap-2 py-2 text-2xl font-bold"
+                id={encodeURI(token.text)}
+                key={token.raw}
+              >
                 <a href={`#${encodeURI(token.text)}`}>#</a>
                 {inline}
               </h2>
             );
           case 3:
-            return <h3 key={token.raw}>{inline}</h3>;
+            return (
+              <h3 className="py-2 text-xl font-bold" key={token.raw}>
+                {inline}
+              </h3>
+            );
           case 4:
-            return <h4 key={token.raw}>{inline}</h4>;
+            return (
+              <h4 className="py-2 text-lg font-bold" key={token.raw}>
+                {inline}
+              </h4>
+            );
           case 5:
-            return <h5 key={token.raw}>{inline}</h5>;
+            return (
+              <h5 className="py-2 text-base font-bold" key={token.raw}>
+                {inline}
+              </h5>
+            );
           case 6:
-            return <h6 key={token.raw}>{inline}</h6>;
+            return (
+              <h6 className="py-2 text-base font-bold" key={token.raw}>
+                {inline}
+              </h6>
+            );
           default:
             throw Error(`invalid heading ${token.depth}`);
         }
@@ -79,7 +109,11 @@ export const parseMarkdown = (tokens: marked.Token[]): ReactNode[] => {
             : [];
 
           const content = [...task, ...parseMarkdown(item.tokens)];
-          return <li key={item.raw}>{content}</li>;
+          return (
+            <li className="ml-5 list-disc leading-8" key={item.raw}>
+              {content}
+            </li>
+          );
         });
 
         if (token.ordered) {
@@ -89,7 +123,11 @@ export const parseMarkdown = (tokens: marked.Token[]): ReactNode[] => {
         }
       }
       case "paragraph": {
-        return <p key={token.raw}>{parseInline(token.tokens)}</p>;
+        return (
+          <p className="leading-8" key={token.raw}>
+            {parseInline(token.tokens)}
+          </p>
+        );
       }
       case "space": {
         return null;
@@ -141,7 +179,14 @@ const parseInline = (tokens: marked.Token[]): ReactNode[] => {
       case "codespan": {
         const { text } = token;
 
-        return <code key={token.raw}>{unescapeText(text)}</code>;
+        return (
+          <code
+            className="whitespace-nowrap rounded-sm bg-gray-400 px-1 text-slate-900"
+            key={token.raw}
+          >
+            {unescapeText(text)}
+          </code>
+        );
       }
       case "del": {
         return <del key={token.raw}>{parseInline(token.tokens)}</del>;
@@ -174,9 +219,9 @@ const parseInline = (tokens: marked.Token[]): ReactNode[] => {
         }
 
         return (
-          <a href={href} key={token.raw} {...props}>
+          <TextLink key={token.raw} href={href} {...props}>
             {parseInline(token.tokens)}
-          </a>
+          </TextLink>
         );
       }
       case "paragraph": {

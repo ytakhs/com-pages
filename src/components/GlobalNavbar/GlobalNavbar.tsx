@@ -1,5 +1,6 @@
 import { FC } from "react";
 import Link from "next/link";
+import { TextLink } from "../TextLink/TextLink";
 
 const items: { title: string; href: string }[] = [
   {
@@ -17,12 +18,7 @@ export const GlobalNavbar: FC = () => {
           <ul className="flex justify-start gap-4 md:flex-col">
             {items.map(({ title, href }) => (
               <li key={href}>
-                <a
-                  className="underline underline-offset-4 hover:text-gray-400"
-                  href={href}
-                >
-                  {title}
-                </a>
+                <TextLink href={href}>{title}</TextLink>
               </li>
             ))}
           </ul>

@@ -3,7 +3,7 @@ import { join } from "path";
 import { Writing } from "../features/writing/type";
 import { getWritingPaths } from "../features/writing/utils/getWritingPaths";
 import { getWritings } from "../features/writing/utils/getWritings";
-import { WritingList } from "../features/writing/routes/WritingList";
+import { WritingListPage } from "../features/writing/routes/WritingListPage";
 import { sortWritings } from "../features/writing/utils/sortWritings";
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
 };
 
 const Home: NextPage<Props> = ({ writings }) => {
-  return <WritingList writings={writings} />;
+  return <WritingListPage writings={writings} />;
 };
 
 export const getStaticProps: GetStaticProps<Props> = async () => {

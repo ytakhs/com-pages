@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import Head from "next/head";
 import { join } from "path";
 import { WritingPage } from "../../../features/writing/routes/WritingPage";
 import { writingPathSchema } from "../../../features/writing/schema/writing";
@@ -14,7 +15,28 @@ type Props = {
 };
 
 const Writing: NextPage<Props> = ({ writing }) => {
-  return <WritingPage writing={writing} />;
+  const {
+    frontmatter: { title },
+    path: { date, slug },
+  } = writing;
+  const url = new URL(`writings/${date}/${slug}`, "https://ytakhs.com");
+
+  return (
+    <>
+      <Head>
+        <title key="title">{title} | ytakhs.com</title>
+        <meta
+          property="og:title"
+          content={`${title} | ytakhs.com`}
+          key="og:title"
+        />
+        <meta property="og:type" content="article" key="og:type" />
+        <meta property="og:url" content={url.href} key="og:url" />
+        <meta property="twitter:card" content="summary" key="twitter:card" />
+      </Head>
+      <WritingPage writing={writing} />
+    </>
+  );
 };
 
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {

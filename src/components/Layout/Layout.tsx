@@ -9,7 +9,7 @@ export const Layout: FC<Props> = ({ children }) => {
   return (
     <div className="flex justify-center">
       <div className="flex min-h-screen w-full flex-col items-start p-8 md:max-w-[900px] md:flex-row">
-        <div className="sticky top-4 w-full shrink-0 md:w-[128px]">
+        <div className="static top-4 w-full shrink-0 md:sticky md:w-[128px]">
           <GlobalNavbar />
         </div>
         <main className="w-full">

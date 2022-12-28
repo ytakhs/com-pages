@@ -13,7 +13,11 @@ export const WritingListPage: FC<Props> = ({ writings }) => {
       <ul>
         {writings.map(({ path: { date, slug } }) => (
           <li key={`${date}-${slug}`}>
-            <Link href={`/writings/${date}/${slug}`}>{slug}</Link>
+            <Link href={`/writings/${date}/${slug}`}>
+              <div className="border-b py-4 text-lg font-bold hover:text-gray-400">
+                {slug}
+              </div>
+            </Link>
           </li>
         ))}
       </ul>

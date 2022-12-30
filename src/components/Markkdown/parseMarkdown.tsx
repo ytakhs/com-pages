@@ -181,7 +181,7 @@ const parseInline = (tokens: marked.Token[]): ReactNode[] => {
 
         return (
           <code
-            className="rounded-sm bg-gray-400 px-1 text-slate-900"
+            className="text-amber-400 before:content-['`'] after:content-['`']"
             key={token.raw}
           >
             {unescapeText(text)}

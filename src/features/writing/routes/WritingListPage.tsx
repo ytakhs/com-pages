@@ -15,7 +15,7 @@ export const WritingListPage: FC<Props> = ({ writings }) => {
         {writings.map(
           ({ path: { date, slug }, frontmatter: { title, createdAt } }) => (
             <li key={`${date}-${slug}`}>
-              <Link href={`/writings/${date}/${slug}`}>
+              <Link href={`/ja/writings/${date}/${slug}`}>
                 <div className="flex justify-between gap-2 border-b py-4 text-lg font-bold hover:text-gray-400">
                   <p className="w-full grow overflow-hidden text-ellipsis whitespace-nowrap">
                     {title}

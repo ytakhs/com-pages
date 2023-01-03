@@ -20,11 +20,12 @@ const Writing: NextPage<Props> = ({ writing }) => {
     path: { date, slug },
   } = writing;
   const url = new URL(`writings/${date}/${slug}`, "https://ytakhs.com");
+  const titleText = `${title} | ytakhs.com`;
 
   return (
     <>
       <Head>
-        <title key="title">{title} | ytakhs.com</title>
+        <title key="title">{titleText}</title>
         <meta
           property="og:title"
           content={`${title} | ytakhs.com`}

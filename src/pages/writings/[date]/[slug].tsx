@@ -19,7 +19,11 @@ const Writing: NextPage<Props> = ({ writing }) => {
     frontmatter: { title },
     path: { date, slug },
   } = writing;
-  const url = new URL(`writings/${date}/${slug}`, "https://ytakhs.com");
+  const baseUrl = "https://ytakhs.com";
+  const contentUrl = new URL(`writings/${date}/${slug}`, baseUrl);
+  const imageUrl = new URL("/api/og", baseUrl);
+  const imageUrlQuery = new URLSearchParams({ title: encodeURI(title) });
+
   const titleText = `${title} | ytakhs.com`;
 
   return (
@@ -32,7 +36,12 @@ const Writing: NextPage<Props> = ({ writing }) => {
           key="og:title"
         />
         <meta property="og:type" content="article" key="og:type" />
-        <meta property="og:url" content={url.href} key="og:url" />
+        <meta property="og:url" content={contentUrl.href} key="og:url" />
+        <meta
+          property="og:image"
+          content={`${imageUrl.href}?${imageUrlQuery.toString()}`}
+          key="og:image"
+        />
         <meta property="twitter:card" content="summary" key="twitter:card" />
       </Head>
       <WritingPage writing={writing} />
